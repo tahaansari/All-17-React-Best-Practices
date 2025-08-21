@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #ef4444; /* a custom red */
+  --color-primary-dark: #ef4444; /* a custom red */
+  --color-secondary: #3b82f6; /* a custom blue */
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
