@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@layer base {
+  *, ::after, ::before, ::backdrop, ::file-selector-button {
+    border-color: #E6E9EB; /* Replace with your desired color */
+  }
+}
+
 @theme {
   --color-primary: #ef4444; /* a custom red */
   --color-primary-dark: #ef4444; /* a custom red */
@@ -8,8 +14,20 @@
 
 @theme {
   --color-brand-bg: #D3DAD9;
+  --color-brand-bg-light-10: #E1E6E5;
+  --color-brand-bg-light-20: #EBF0EF;
+  --color-brand-bg-light-30: #F3F6F6;
+  
   --color-brand-text: #37353E;
+
   --color-brand-secondary: #44444E;
+  --color-brand-secondary-light-15: #5A5A65;
+  --color-brand-secondary-light-30: #70707B;
+  --color-brand-secondary-light-45: #888892;
+  --color-brand-secondary-light-60: #A0A0AA;
+  --color-brand-secondary-light-75: #B8B8C1;
+  --color-brand-secondary-light-90: #D0D0D6;
+
   --color-brand-accent: #715A5A;
   --color-brand-accent-light: #8C7070;
   --color-brand-accent-dark: #5A4646;
