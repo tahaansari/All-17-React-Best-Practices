@@ -13,36 +13,19 @@ function App() {
   const [editTodoFlag,setEditTodoFlag] = useState(null);
   const addTodo = () => {
     todoInputRef.current.focus();
-    let newErrors = {};
-    if (!inputText.trim()) {
-      newErrors.title = "This Field is Required";
-      setErrors(newErrors);
-      return false;
+    const filteredInputText =  inputText.trim();
+    if (!filteredInputText) {
+      setErrors({title:"This Field is Required"});
+      return;
     }
     if(!editTodoFlag){
-      console.log('add operation')
       setListTodos((prev)=>[...prev, { id:uuidv4(), title: inputText.trim() }]);
-      setInputText("");
-      newErrors = null;
-      setErrors(newErrors);
     }else{
-      console.log('update operation')
-      const updatedList = listTodos.map((todo)=>{
-        if(todo.id == editTodoFlag){
-          return {...todo, title: inputText.trim()}
-        }else{
-          return {...todo}
-        }
-
-      })
-      console.log(updatedList)
-      setListTodos(updatedList)
-      setInputText("");
-      newErrors = null;
-      setErrors(newErrors);
+      setListTodos((prev)=>prev.map((todo)=> todo.id === editTodoFlag ? {...todo, title: filteredInputText} : todo))
       setEditTodoFlag(null)
     }
-    
+    setInputText("");
+    setErrors(null);
   };
   const completedTodo = () => {
 
@@ -132,5 +115,15 @@ function App() {
     </>
   );
 }
+
+
+
+
+
+
+
+
+
+
 
 export default App;
