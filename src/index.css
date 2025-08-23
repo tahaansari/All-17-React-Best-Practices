@@ -6,6 +6,15 @@
   --color-secondary: #3b82f6; /* a custom blue */
 }
 
+@theme {
+  --color-brand-bg: #D3DAD9;
+  --color-brand-text: #37353E;
+  --color-brand-secondary: #44444E;
+  --color-brand-accent: #715A5A;
+  --color-brand-accent-light: #8C7070;
+  --color-brand-accent-dark: #5A4646;
+}
+
 body{
     font-family: 'Roboto', sans-serif;
 }
