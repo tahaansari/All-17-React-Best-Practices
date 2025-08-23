@@ -10,6 +10,7 @@ function App() {
   const [inputText, setInputText] = useState("");
   const [errors, setErrors] = useState(null);
   const [listTodos, setListTodos] = useState([]);
+  const [editTodoFlag,setEditTodoFlag] = useState(null);
   const addTodo = () => {
     todoInputRef.current.focus();
     let newErrors = {};
@@ -18,18 +19,39 @@ function App() {
       setErrors(newErrors);
       return false;
     }
-    setListTodos((prev)=>[...prev, { id:uuidv4(), title: inputText.trim() }]);
-    setInputText("");
-    newErrors = null;
-    setErrors(newErrors);
+    if(!editTodoFlag){
+      console.log('add operation')
+      setListTodos((prev)=>[...prev, { id:uuidv4(), title: inputText.trim() }]);
+      setInputText("");
+      newErrors = null;
+      setErrors(newErrors);
+    }else{
+      console.log('update operation')
+      const updatedList = listTodos.map((todo)=>{
+        if(todo.id == editTodoFlag){
+          return {...todo, title: inputText.trim()}
+        }else{
+          return {...todo}
+        }
+
+      })
+      console.log(updatedList)
+      setListTodos(updatedList)
+      setInputText("");
+      newErrors = null;
+      setErrors(newErrors);
+      setEditTodoFlag(null)
+    }
+    
   };
+  const completedTodo = () => {
+
+  }
   const removeTodo = (id)=>{
     setListTodos((prev)=>prev.filter((todo)=> todo.id !== id));
   }
   const editTodo = (id)=>{
-    // get title of todo by id
-    // put title on input
-    // on click add to list update that todo
+    setEditTodoFlag(id);
     const todoTitle = 
       listTodos.find((todo)=> {
         if(todo.id === id){
@@ -39,6 +61,7 @@ function App() {
     setInputText(todoTitle.title)
     todoInputRef.current.focus();
   }
+
   return (
     <>
       <div className="bg-brand-bg p-6 flex items-center justify-center h-screen">
