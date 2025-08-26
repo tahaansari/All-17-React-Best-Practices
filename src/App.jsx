@@ -26,13 +26,13 @@ function App() {
     setEditTodoFlag({id,title})
   }
 
-  const completeTodo = (id) => {  
+  const removeTodo = (id, type)=>{
+    if(type==="removeTodo"){
+      setTodos((prev)=>prev.filter((todo)=> todo.id !== id));
+    }else{
       setTodos((prev)=> prev.filter((todo)=> todo.id != id ))
       setCompletedTodoCount((prev)=>prev + 1)
-  }
-
-  const removeTodo = (id)=>{
-    setTodos((prev)=>prev.filter((todo)=> todo.id !== id));
+    }
   }
 
   return (
@@ -55,7 +55,7 @@ function App() {
             </div>
             <div className="grid grid-cols-2 h-full">
               <div>
-                <ListTodo todos={todos} onEditTodo={editTodo} onCompleteTodo={completeTodo} onRemoveTodo={removeTodo} />
+                <ListTodo todos={todos} onEditTodo={editTodo} onRemoveTodo={removeTodo} />
               </div>
               <div className="px-4 pt-4 pb-6 border-l">
                 <AddTodoForm onAddUpdateTodo={addUpdateTodo} editTodoFlag={editTodoFlag} />
